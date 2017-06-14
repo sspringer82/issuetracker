@@ -1,0 +1,27 @@
+CREATE TABLE users (
+    id INTEGER PRIMARY KEY,
+    username TEXT,
+    password TEXT
+);
+
+INSERT INTO users (username, password) VALUES 
+('Peter', 'test'),
+('Paul', 'test'),
+('Mary', 'test');
+
+CREATE TABLE issues (
+    id INTEGER PRIMARY KEY,
+    title TEXT,
+    description TEXT,
+    status INTEGER,
+    created INTEGER,
+    creator INTEGER,
+    assignee INTEGER,
+    FOREIGN KEY (creator) REFERENCES users(id),
+    FOREIGN KEY (assignee) REFERENCES users(id)
+);
+
+INSERT INTO issues (title, description, status, creator, assignee) VALUES
+('user management', 'create a user management tool', 0, 1, 2),
+('security', 'improve the security of the tool', 0, 1, 2),
+('performance', 'find the main performance issues of the application', 0, 1, 3);
